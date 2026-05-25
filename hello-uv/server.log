@@ -1,0 +1,24 @@
+INFO:     Started server process [1084]
+INFO:     Waiting for application startup.
+2026-05-25 17:33:53,526 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-05-25 17:33:53,526 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("products")
+2026-05-25 17:33:53,526 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-05-25 17:33:53,526 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info("products")
+2026-05-25 17:33:53,526 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-05-25 17:33:53,527 INFO sqlalchemy.engine.Engine 
+CREATE TABLE products (
+	name VARCHAR(200) NOT NULL, 
+	description VARCHAR(2000) NOT NULL, 
+	price FLOAT NOT NULL, 
+	image_url VARCHAR(500), 
+	id INTEGER NOT NULL, 
+	created_at DATETIME NOT NULL, 
+	updated_at DATETIME NOT NULL, 
+	PRIMARY KEY (id)
+)
+
+
+2026-05-25 17:33:53,527 INFO sqlalchemy.engine.Engine [no key 0.00009s] ()
+2026-05-25 17:33:53,528 INFO sqlalchemy.engine.Engine COMMIT
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)

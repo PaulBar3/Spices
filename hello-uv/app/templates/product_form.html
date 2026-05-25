@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}{% if product %}Редактировать товар{% else %}Добавить товар{% endif %} - Магазин товаров{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>{% if product %}✏️ Редактировать товар{% else %}➕ Добавить товар{% endif %}</h2>
+    <a href="/admin" class="btn" style="background-color: #95a5a6;">← Назад в админ панель</a>
+</div>
+
+<div style="background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); max-width: 700px;">
+    <form method="post" action="{{ action }}">
+        <div class="form-group">
+            <label for="name">Название товара *</label>
+            <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                value="{{ product.name if product else '' }}" 
+                required 
+                minlength="1" 
+                maxlength="200"
+                placeholder="Введите название товара"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="description">Описание *</label>
+            <textarea 
+                id="description" 
+                name="description" 
+                required 
+                minlength="1" 
+                maxlength="2000"
+                placeholder="Введите описание товара"
+            >{{ product.description if product else '' }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Цена (₽) *</label>
+            <input 
+                type="number" 
+                id="price" 
+                name="price" 
+                value="{{ product.price if product else '' }}" 
+                required 
+                step="0.01" 
+                min="0.01"
+                placeholder="0.00"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="image_url">URL изображения</label>
+            <input 
+                type="url" 
+                id="image_url" 
+                name="image_url" 
+                value="{{ product.image_url if product else '' }}" 
+                maxlength="500"
+                placeholder="https://example.com/image.jpg"
+            >
+            <small style="color: #7f8c8d; display: block; margin-top: 5px;">
+                Необязательное поле. Оставьте пустым, если нет изображения.
+            </small>
+        </div>
+
+        <div style="display: flex; gap: 15px; margin-top: 30px;">
+            <button type="submit" class="btn btn-success" style="flex: 1;">
+                {% if product %}💾 Сохранить изменения{% else %}➕ Создать товар{% endif %}
+            </button>
+            <a href="/admin" class="btn" style="background-color: #95a5a6;">Отмена</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
