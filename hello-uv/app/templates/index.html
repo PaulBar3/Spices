@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Каталог товаров{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>📦 Каталог товаров</h2>
+</div>
+
+{% if products %}
+<div class="products-grid">
+    {% for product in products %}
+    <div class="product-card">
+        {% if product.image_url %}
+        <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-image">
+        {% else %}
+        <div class="product-image">📦</div>
+        {% endif %}
+        
+        <div class="product-info">
+            <h3 class="product-name">{{ product.name }}</h3>
+            <p class="product-description">{{ product.description }}</p>
+            <div class="product-price">{{ "%.2f"|format(product.price) }} ₽</div>
+            <div class="product-actions">
+                <a href="/product/{{ product.id }}" class="btn">Подробнее</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p style="text-align: center; color: #7f8c8d; font-size: 18px; margin-top: 50px;">
+    Товары пока не добавлены. Перейдите в <a href="/admin" style="color: #3498db;">админ панель</a> для добавления.
+</p>
+{% endif %}
+{% endblock %}
